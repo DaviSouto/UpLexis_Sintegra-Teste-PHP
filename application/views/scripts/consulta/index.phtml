@@ -1,0 +1,117 @@
+<b class="title-form title-form-consulta">Consultar dados via web-service</b>
+
+<form id="form-consulta" class="form-horizontal" method="Post">
+
+	<!-- CNPJ -->
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4">
+	    	<input type="text" name="num_cnpj" class="form-control" id="num_cnpj" placeholder="Informe o CNPJ" maxlength="18" value="<?php if ($this->num_cnpj) echo $this->num_cnpj; ?>">         	    	
+		</div>
+	</div>
+	
+	<!-- Consultar -->
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4">
+	    	 <button type="submit" class="btn btn-danger btn-lg btn-block" name="botao" value="Consultar">Consultar</button>    	    	
+		</div>
+	</div>
+</form>
+
+<?php if ($this->result): ?>
+<table border="0" class="table table-condensed table-bordered">
+	<tr>
+    	<td class="cadastro">Última alteração: <?php echo date("d/m/Y á\s H:i:s", strtotime($this->result['dtaUltimaAtu'])); ?></td>
+	</tr>
+	<tr>
+		<td>
+            <table width="100%" border="0" cellspacing="2" cellpadding="2" class="table table-condensed">
+            	<tr>
+            		<td class="secao" colspan="4">IDENTIFICAÇÃO - PESSOA JURÍDICA</td>
+            	</tr>
+				<tr>
+                	<td class="titulo" width="20%">CNPJ:</td>
+                	<td class="valor" width="30%"><?php echo $this->result['cnpj']; ?></td>
+                	<td class="titulo" width="25%" align="center">Inscrição Estadual:</td>
+                	<td class="valor"><?php echo $this->result['inscEstadual']; ?></td>
+                </tr>
+            	<tr>
+            		<td width="20%" class="titulo">Razão Social :</td>
+            		<td class="valor" colspan="3"><?php echo $this->result['razaoSocial']; ?></td>
+            	</tr>
+            </table>
+
+			<table width="100%" border="0" cellspacing="2" cellpadding="2" class="table table-condensed">
+				<tr>
+					<td class="secao" colspan="4">ENDEREÇO</td>
+				</tr>
+				<tr>
+					<td class="titulo" width="20%">Logradouro:</td>
+					<td class="valor" colspan="3"><?php echo $this->result['logradouro']; ?></td>
+				</tr>
+				<tr>            
+					<td class="titulo" width="20%">Número:</td>
+					<td class="valor" width="15%"><?php echo $this->result['numero']; ?></td>
+					<td class="titulo" width="20%">Complemento:</td>
+					<td class="valor"><?php echo $this->result['complemento']; ?></td>
+				</tr>
+				<tr>
+					<td class="titulo" width="20%">Bairro:</td>
+					<td class="valor" colspan="3"><?php echo $this->result['bairro']; ?></td>
+				</tr>
+				<tr>
+					<td class="titulo" width="20%">Município:</td>
+					<td class="valor" width="15%"><?php echo $this->result['municipio']; ?></td>
+					<td class="titulo">UF:</td>
+					<td class="valor"><?php echo $this->result['uf']; ?></td>
+				</tr>
+				<tr>
+					<td class="titulo" width="20%">CEP:</td>
+					<td width="30%" class="valor"><?php echo $this->result['cep']; ?></td>
+					<td width="20%" class="titulo">Telefone:</td>
+					<td width="30%" class="valor"><?php echo $this->result['telefone']; ?></td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellspacing="2" cellpadding="2" class="table table-condensed">
+				<tr>
+					<td class="secao" colspan="4">INFORMAÇÕES COMPLEMENTARES</td>
+				</tr>
+				<tr>
+					<td class="titulo" width="40%" align="right">Atividade Econômica:</td>
+					<td class="valor" width="60%"><?php echo $this->result['ativEconomica']; ?></td>
+				</tr>
+				<tr>
+					<td class="titulo" width="40%" align="right">Data de Inicio de Atividade:</td>
+					<td class="valor"><?php echo date("d/m/Y", strtotime($this->result['dtaInicioAtividade'])) ?></td>
+				</tr>
+				<tr>
+					<td class="titulo" width="40%" align="right">Situação Cadastral Vigente:</td>
+					<td class="valor"><?php echo $this->result['sitCadastral']; ?></td>
+				</tr>
+				<tr>
+					<td class="titulo" width="40%" align="right">Data desta Situação Cadastral:</td>
+					<td class="valor"><?php echo date("d/m/Y", strtotime($this->result['dtaSitCadastral'])); ?></td>
+				</tr>
+				<tr>
+					<td class="titulo" width="40%" align="right">Regime de Apuração:</td>
+					<td class="valor"><?php echo $this->result['regApuracao']; ?></td>
+				</tr>
+				<tr>
+                    <td class="titulo" width="40%" align="right">Emitente de NFe desde:</td>
+					<td class="valor"><?php echo date("d/m/Y", strtotime($this->result['dtaEmitenteDesde'])); ?></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<?php endif; ?>
+
+<a href="/">
+	<button name="btn_consulta" id="btn-voltar" class="btn btn-sm btn-block">Voltar</button>
+</a>
+
+<!-- Setar foco no campo CNPJ -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#num_cnpj").focus();
+	});
+</script>

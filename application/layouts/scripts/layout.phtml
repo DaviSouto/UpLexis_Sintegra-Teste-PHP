@@ -1,0 +1,42 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <title>Teste para desenvolvedor PHP da upLexis</title>
+  
+  <?php 
+	echo $this->headLink()->appendStylesheet('media/css/global.css'); 
+	
+	echo $this->headScript()->appendFile('media/jquery/jquery-1.11.3.min.js');
+	echo $this->headScript()->appendFile('media/bootstrap/bootstrap.min.js'); 
+	echo $this->headLink()->appendStylesheet('media/bootstrap/bootstrap.min.css');  
+  ?>
+</head>
+<body>
+	<div id="all">
+		<img id="img-logo" title="UpLexis Logo" src="media/img/uplexis_logo.gif" />
+		<h1 id="title">Teste para desenvolvedor PHP da upLexis</h1>
+		
+		<?php if ($this->layout()->msg_error): ?>
+		<p class="bg-danger error-panel">
+			<b>Erro</b>
+			</br>
+			<?php echo $this->layout()->msg_error; ?>
+		</p>
+		<?php endif; ?>
+		
+		<?php if ($this->layout()->msg_success): ?>
+		<p class="bg-success success-panel">
+			<b>Sucesso</b>
+			</br>
+			<?php echo $this->layout()->msg_success; ?>
+		</p>
+		<?php endif; ?>
+		
+		<div id="center-block">
+			<?php echo $this->layout()->content ?>
+		</div>
+ 	</div>
+</body>
+</html>

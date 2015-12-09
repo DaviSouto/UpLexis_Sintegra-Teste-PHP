@@ -1,0 +1,53 @@
+<b class="title-form">Salvar dados do Sintegra no banco</b>
+
+<form id="form-consulta" class="form-horizontal" method="Post">
+
+	<!-- CNPJ -->
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4">
+	    	<input type="text" name="num_cnpj" class="form-control" id="num_cnpj" placeholder="Informe o CNPJ" maxlength="18" value="<?php if ($this->num_cnpj) echo $this->num_cnpj; ?>">         	    	
+		</div>
+	</div>
+	
+	<!-- Proxy -->
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4">			
+			<div class="input-group">
+    			<span class="input-group-addon"><input type="checkbox" name="use_proxy" id="use_proxy" maxlength="20" <?php if ($this->use_proxy): ?>checked<?php endif; ?> /> Proxy</span>
+    			<input type="text" class="form-control" id="proxy_name" name="proxy_name" value="<?php if ($this->proxy_name) echo $this->proxy_name; ?>" />
+			</div>
+		</div>
+	</div>
+	
+	<!-- Consultar -->
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4">
+	    	 <button type="submit" class="btn btn-primary btn-lg btn-block" name="botao" value="Consultar">Buscar e salvar</button>    	    	
+		</div>
+	</div>
+</form>
+
+<?php if ($this->result): ?>
+<div id="json-box">
+	<b>Código JSON</b>
+	<blockquote>
+		<?php echo $this->result; ?>
+	</blockquote>
+</div>
+
+<a href="/consulta">
+	<button name="btn-consulta" id="btn-consulta" class="btn btn-lg btn-block">Ir para consulta</button>
+</a>		
+<?php else: ?>
+<a href="/consulta">
+	<button name="btn-consulta" id="btn-consulta" class="btn btn-sm btn-block">Ir para consulta</button>
+</a>
+<?php endif; ?>		
+
+
+<!-- Setar foco no campo CNPJ -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#num_cnpj").focus();
+	});
+</script>
